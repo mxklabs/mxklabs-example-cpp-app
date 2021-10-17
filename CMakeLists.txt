@@ -22,7 +22,8 @@ add_executable(${PROJECT_NAME} ${EXAMPLE_CPP_APP_HEADER_FILES} ${EXAMPLE_CPP_APP
 # Add dependency on mxklabs-example-cpp-lib1.
 find_package (ExampleCppLib1 REQUIRED)
 include_directories(${EXAMPLE_CPP_LIB1_INCLUDE_DIRS})
-target_link_libraries (example_cpp_app ${EXAMPLE_CPP_LIB1_LIBRARIES})
+message("EXAMPLE_CPP_LIB1_LIBRARIES=${EXAMPLE_CPP_LIB1_LIBRARIES}")
+target_link_libraries (example_cpp_app example_cpp_lib1)
 
 # Install it.
 install (TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
