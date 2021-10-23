@@ -1,0 +1,7 @@
+#include <example_cpp_app/githash.hpp>
+
+namespace example_cpp_app {
+
+const std::string gitHash = "@GIT_HASH@";
+
+}

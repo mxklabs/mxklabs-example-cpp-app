@@ -11,9 +11,18 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Add include directories.
 include_directories(include)
+include_directories(src/)
+
+# Capture git hash.
+execute_process(
+  COMMAND git log -1 --format=%h
+  WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+  OUTPUT_VARIABLE GIT_HASH
+  OUTPUT_STRIP_TRAILING_WHITESPACE)
+configure_file(src/example_cpp_app/githash.cpp.in src/example_cpp_app/githash.cpp @ONLY)
 
 # Find sources and headers.
-file(GLOB_RECURSE EXAMPLE_CPP_APP_SOURCE_FILES "src/*.cpp" "src/*.hpp*")
+file(GLOB_RECURSE EXAMPLE_CPP_APP_SOURCE_FILES "src/*.cpp" "src/*.hpp*" ${PROJECT_BINARY_DIR}/src/example_cpp_app/githash.cpp)
 file(GLOB_RECURSE EXAMPLE_CPP_APP_HEADER_FILES "include/*.hpp*")
 
 # Create an executable.
